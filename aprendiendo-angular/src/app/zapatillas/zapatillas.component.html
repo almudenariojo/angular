@@ -1,2 +1,6 @@
 
 <h2>{{titulo}}</h2>
+<p>Listado de las zapatillas más populares</p>
+<ul>
+  <li *ngFor="let deportiva of zapatillas">{{deportiva.nombre}} - <strong> {{deportiva.precio}}</strong></li>
+</ul>
