@@ -9,8 +9,12 @@ export class ZapatillasComponent implements OnInit {
   public titulo: string;
   public zapatillas: Array<Zapatilla>;
   public marcas: string[];
+  public color:string;
+  public mi_marca: string;
 
   constructor() {
+    this.mi_marca ="";
+    this.color ='yellow';
     this.titulo = "Componente de zapatillas";
     this.zapatillas = [
       new Zapatilla('Reebook Classic', 'Reebook', 'red', 30, true),
@@ -35,6 +39,28 @@ export class ZapatillasComponent implements OnInit {
     });
     console.log(this.marcas);
   }
+
+  getMarca(){
+    alert(this.mi_marca);
+  };
+
+ addMarca(){
+    this.marcas.push(this.mi_marca);
+  };
+
+ borrarMarca(index:number){
+    //delete this.marcas[index];
+    this.marcas.splice(index, 1);
+  };
+
+
+  public onBlur() {
+    console.log("Has salido del input");
+  };
+
+  public mostrarPalabra(){
+alert(this.color)
+  };
 
 }
 
