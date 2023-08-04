@@ -7,11 +7,24 @@
 }">
     <h1>Bienvenido a mi App en Angular!: {{ title }}</h1>
 
-<p>{{ descripcion }}</p>
+<p>{{ descripcion }}</p><br>
 
-<button (click) = "ocultarVideojuegos(false)">Ocultar</button>
+<hr>
+
+<nav>
+  <a [routerLink]="['/Home']" [routerLinkActive]="['active']">Home</a><br>
+  <a [routerLink]="['/zapatillas']" [routerLinkActive]="['active']">Zapatillas</a><br>
+  <a [routerLink]="['/videojuego']" [routerLinkActive]="['active']">Videojuegos</a><br>
+  <a [routerLink]="['/cursos']" [routerLinkActive]="['active']">Cursos</a><br>
+</nav><br>
+
+<hr>
+
+<!-- <button (click) = "ocultarVideojuegos(false)">Ocultar</button>
 <button (click) = "ocultarVideojuegos(true)">Mostrar</button>
 <videojuego *ngIf="mostrar_videojuegos"></videojuego>
 <zapatillas></zapatillas>
-<cursos></cursos>
+<cursos></cursos> -->
+
+<router-outlet></router-outlet>
 </div>
