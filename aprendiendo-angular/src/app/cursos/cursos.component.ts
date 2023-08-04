@@ -1,10 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'cursos',
   templateUrl: './cursos.component.html',
   styleUrls: ['./cursos.component.css']
 })
-export class CursosComponent {
+export class CursosComponent implements OnInit {
+  public nombre: string = '';
+  public followers: number = 1;
+
+  constructor(
+    private _route: ActivatedRoute,
+    private _router: Router
+  ) {}
+
+  ngOnInit() {
+    this._route.params.subscribe((params: Params) => {
+      this.nombre = params['nombre'];
+      this.followers = params['followers']; // Sin conversión a número
+      console.log('Nombre:', this.nombre);
+      console.log('Followers:', typeof params['followers']);
+
+      if(this.nombre === 'ninguno'){
+        this._router.navigate(['/home'])
+      }
+    });
+  }
+
+  redirigir(){
+    this._router.navigate(['/zapatillas']);
+  }
+
+  redirigir1(){
+    this._router.navigate(['/videojuego']);
+  }
+
 
 }
