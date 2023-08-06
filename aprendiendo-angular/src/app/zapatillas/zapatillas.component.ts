@@ -1,33 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { Zapatilla } from '../models/zapatilla';
+import { ZapatillaService } from '../services/zapatilla.service';
 
 @Component({
   selector: 'zapatillas',
-  templateUrl: './zapatillas.component.html'
+  templateUrl: './zapatillas.component.html',
+  providers: [ZapatillaService]
 })
 export class ZapatillasComponent implements OnInit {
   public titulo: string;
-  public zapatillas: Array<Zapatilla>;
   public marcas: string[];
-  public color:string;
+  public color: string;
   public mi_marca: string;
+  public zapatillas: Array<Zapatilla>;
 
-  constructor() {
-    this.mi_marca ="";
-    this.color ='yellow';
+  constructor(
+    private _zapatillaService: ZapatillaService
+   ){
+    this.mi_marca = "";
+    this.color = 'yellow';
     this.titulo = "Componente de zapatillas";
-    this.zapatillas = [
-      new Zapatilla('Reebook Classic', 'Reebook', 'red', 30, true),
-      new Zapatilla('Nike Classic', 'Nike', 'negro', 80, true),
-      new Zapatilla('Adidas Classic', 'Adidas', 'rojo', 120, false),
-      new Zapatilla('Adidas Moder', 'Adidas', 'azul', 120, true)
-    ];
     this.marcas = [];
+    this.zapatillas = []; // Inicializa el array de zapatillas
     console.log("Se ha cargado el componente zapatillas.component.ts");
   }
 
   ngOnInit() {
-    console.log(this.zapatillas);
+    this.zapatillas = this._zapatillaService.getZapatillas(); // Obtiene las zapatillas del servicio
+    alert(this._zapatillaService.getTexto());
     this.obtenerMarcas();
   }
 
@@ -40,27 +40,25 @@ export class ZapatillasComponent implements OnInit {
     console.log(this.marcas);
   }
 
-  getMarca(){
+  getMarca() {
     alert(this.mi_marca);
-  };
+  }
 
- addMarca(){
+  addMarca() {
     this.marcas.push(this.mi_marca);
-  };
+  }
 
- borrarMarca(index:number){
-    //delete this.marcas[index];
+  borrarMarca(index: number) {
     this.marcas.splice(index, 1);
-  };
-
+  }
 
   public onBlur() {
     console.log("Has salido del input");
-  };
+  }
 
-  public mostrarPalabra(){
-alert(this.color)
-  };
-
+  public mostrarPalabra() {
+    alert(this.color);
+  }
 }
+
 
