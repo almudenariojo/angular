@@ -1,5 +1,16 @@
-<p>Introzca el id del usuario a consultar:</p>
-<input type="text"  [(ngModel)]="userId" (keyup.enter)="cargaUsuario()"/>
+
+{{fecha | date: 'fullDate' | uppercase }} <br>
+<!-- {{fecha | date: 'dd/MM/yy'}} Otro formato -->
+<p>{{'Usando Pipes: Calculadora' }} </p>
+<div [innerHTML]="10 | calculadora: 5"></div>
+
+<hr>
+<p>Introduzca el id del usuario a consultar:</p>
+<input type="text"  [(ngModel)]="userId" (keyup.enter)="cargaUsuario()"/><br>
+
+<div *ngIf="!user">
+  Cargando ...
+</div> <br>
 <div *ngIf="user">
   <img src="{{user.avatar}}" width="200px" />
   <h2>{{user.first_name + ' ' + user.last_name}}</h2>

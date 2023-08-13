@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PeticionesService } from '../services/peticiones.service';
+import { Observer } from 'rxjs';
 
 @Component({
   selector: 'app-externo',
@@ -11,6 +12,7 @@ export class ExternoComponent implements OnInit {
 
   public user: any;
   public userId: any;
+  public fecha: any;
 
   constructor(
     private _peticionesService: PeticionesService
@@ -19,17 +21,27 @@ export class ExternoComponent implements OnInit {
   }
 
   ngOnInit() {
-   this.cargaUsuario();
+
+    this.fecha = new Date(2023,8,13);
+    this.cargaUsuario();
   }
-  cargaUsuario(){
-    this._peticionesService.getUser(this.userId).subscribe(
-      result => {
+
+  cargaUsuario() {
+    this.user = false;
+    const observer: Observer<any> = {
+      next: (result) => {
         this.user = result.data;
       },
-      error => {
+      error: (error) => {
         console.log(error);
+      },
+      complete: () => {
+        // Lógica opcional cuando la suscripción se completa
       }
-    );
+    };
+
+    this._peticionesService.getUser(this.userId).subscribe(observer);
   }
 }
+
 

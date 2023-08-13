@@ -1,0 +1,16 @@
+span {
+  color: red;
+  font-size: 14px;
+  margin-left: 5px;
+}
+
+/* Estilo para campos inválidos */
+.campo-invalido {
+  border: 2px solid red;
+}
+
+/* Estilo para campos válidos */
+.campo-valido {
+  border: 2px solid green;
+}
+
