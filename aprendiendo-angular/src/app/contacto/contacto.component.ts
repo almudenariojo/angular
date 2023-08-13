@@ -5,21 +5,33 @@ import { ContactoUsuario } from '../models/contacto.usuario';
   templateUrl: './contacto.component.html',
   styleUrls: ['./contacto.component.css']
 })
-export class ContactoComponent implements OnInit{
-   public usuario: ContactoUsuario;
-    constructor(){
-      this.usuario = new ContactoUsuario('Almudena', 'Riojo Gómez', 'correo@example.com', 'Mensaje de ejemplo');
-    }
-    enviarFormulario(formulario: any) {
-      if (formulario.valid) {
-        // Realiza las acciones necesarias con los datos del usuario
-        console.log(this.usuario);
-        // ...otras acciones
-        console.log("formulario enviado");
-        formulario.reset();
-      }
-    }
-    ngOnInit(): void {
 
+export class ContactoComponent implements OnInit {
+  public usuario: ContactoUsuario;
+  public formularioEnviado = false;
+
+  constructor() {
+    this.usuario = new ContactoUsuario('', '', '', '');
+  }
+
+  enviarFormulario(formulario: any) {
+    if (formulario.valid) {
+      console.log(this.usuario);
+      console.log("formulario enviado");
+      this.formularioEnviado = true;
+    }
+  }
+
+  restablecerCampos() {
+    this.usuario = new ContactoUsuario('', '', '', ''); // Restablece los valores del usuario
+    this.formularioEnviado = false;
+  }
+
+  ngOnInit(): void {
+  }
 }
-}
+
+
+
+
+

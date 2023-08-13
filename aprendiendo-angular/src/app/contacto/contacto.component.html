@@ -32,3 +32,14 @@
   <button type="submit" [disabled]="!formulario.valid">Enviar</button>
 </form>
 
+<div *ngIf="formularioEnviado">
+  <h3>Datos del formulario:</h3>
+  <p><strong>Nombre:</strong> {{ usuario.nombre }}</p>
+  <p><strong>Apellidos:</strong> {{ usuario.apellidos }}</p>
+  <p><strong>Email:</strong> {{ usuario.email }}</p>
+  <p><strong>Mensaje:</strong> {{ usuario.mensaje }}</p>
+  <button (click)="restablecerCampos()">Limpiar campos</button>
+</div>
+
+
+
