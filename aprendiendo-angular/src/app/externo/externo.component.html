@@ -15,3 +15,37 @@
   <img src="{{user.avatar}}" width="200px" />
   <h2>{{user.first_name + ' ' + user.last_name}}</h2>
 </div>
+
+<hr>
+
+<h2>Crear usuario</h2>
+<form #newUserForm="ngForm" (ngSubmit)="onSubmit(newUserForm)">
+  <p>
+    <label for="name">Nombre: </label>
+    <input type="text" name="name" #name="ngModel" [(ngModel)]="new_user.name" required
+           pattern="[A-Za-z ]+" title="Solo se permiten letras y espacios">
+    <span *ngIf="name.touched && name.invalid && name.errors?.['pattern']">El nombre no es válido</span>
+  </p>
+
+  <p>
+    <label for="job">Trabajo: </label>
+    <input type="text" name="job" #job="ngModel" [(ngModel)]="new_user.job" required
+           pattern="[A-Za-z ]+" title="Solo se permiten letras y espacios">
+    <span *ngIf="job.touched && job.invalid && job.errors?.['pattern']">El trabajo no es válido</span>
+  </p>
+
+  <button type="submit">Crear usuario</button>
+</form>
+
+<div *ngIf="usuarioCreado">
+  <h2>Usuario Creado:</h2>
+  <p><strong>Nombre:</strong> {{ usuarioCreado.name }}</p>
+  <p><strong>Trabajo:</strong> {{ usuarioCreado.job }}</p>
+</div>
+
+
+
+
+
+
+
